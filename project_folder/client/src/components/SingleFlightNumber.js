@@ -83,6 +83,26 @@ class SingleFlightNumber extends Component {
                                     value={this.state.flightNumber.crewMembers}
                                 />
                             </div>
+                            <div>
+                                <label htmlFor="planeType">Plane Type</label>
+                                <input
+                                    id="number"
+                                    type="text"
+                                    number="number"
+                                    onChange={this.handleChange}
+                                    value={this.state.flightNumber.crewMembers}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="recyclingProduced">Recycling Produced</label>
+                                <input
+                                    id="number"
+                                    type="text"
+                                    number="number"
+                                    onChange={this.handleChange}
+                                    value={this.state.flightNumber.recyclingProduced}
+                                />
+                            </div>
                             <button>Update</button>
                         </form>
                         : <div>
@@ -92,6 +112,12 @@ class SingleFlightNumber extends Component {
                             </div>
                             <div>
                                 CrewMembers: {this.state.flightNumber.crewMembers}
+                            </div>
+                            <div>
+                                PlaneType: {this.state.flightNumber.planeType}
+                            </div>
+                            <div>
+                                RecyclingProduced: {this.state.flightNumber.recyclingProduced}
                             </div>
                             <button onClick = {this.deleteFlightNumber}>Delete</button>
                         </div>

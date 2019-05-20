@@ -1,4 +1,5 @@
 const FlightNumber = require('../models/FlightNumber.js')
+const mongoose = require('./connection.js')
 
 const saved = async () => {
     await FlightNumber.deleteMany()

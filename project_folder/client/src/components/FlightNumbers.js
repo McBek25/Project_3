@@ -16,7 +16,7 @@ class FlightNumbers extends Component {
 
 
     componentDidMount = () => {
-        axios.get('/api.v1').then(res => {
+        axios.get('/api/v1').then(res => {
             this.setState({ flightNumbers: res.data })
         })
     }
@@ -80,7 +80,7 @@ class FlightNumbers extends Component {
                     this.state.isFlightNumberFormDisplayed
                         ? <form onSubmit = {this.createFlightNumber}> 
                             <div>
-                                <label htmlFor = "Number"></label>
+                                <label htmlFor="Number"></label>
                                 <input
                                     id="number"
                                     type="text"
@@ -95,6 +95,24 @@ class FlightNumbers extends Component {
                                     type="text"
                                     onChange={this.handleChange}
                                     value={this.state.newFlightNumber.crewMembers}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="planeType">Plane Type</label>
+                                <input
+                                    id=""
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.newFlightNumber.planeType}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="recyclingProduced">Recycling Produced</label>
+                                <input
+                                    id=""
+                                    type="text"
+                                    onChange={this.handleChange}
+                                    value={this.state.newFlightNumber.recyclingProduced}
                                 />
                             </div>
                             <button>Create</button>
