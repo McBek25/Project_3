@@ -5,9 +5,19 @@ import axios from "axios";
 class SingleFlightNumber extends Component {
     state = {
         flightNumber: {
+            _id: `${this.props.match.params.id}`, //check the syntax, specifically backticks
             number: '',
-            crewMembers: ''
-        },
+            crewMembers: '',
+            recyclingProduced: '',
+            planeType: ''
+        }, 
+        // updateflightNumberInfo: {
+        //     _id:'',
+        //     number: '',
+        //     crewMembers: '',
+        //     recyclingProduced: '',
+        //     planeType: ''
+        // },
         redirectToHome: false,
         isEditFormDisplayed: false
     }
@@ -38,13 +48,9 @@ class SingleFlightNumber extends Component {
 
     updateFlightNumber = (e) => {
         e.preventDefault()
+        console.log(this.state.flightNumber)
         axios
-            .put(`/api/v1/${this.props.match.params.id}`, {
-                number: this.state.flightNumber.name,
-                crewMembers: this.state.flightNumber.crewMembers,
-                planeType: this.state.flightNumber.planeType,
-                recyclingProduced: this.state.flightNumber.recyclingProduced
-            })
+            .put(`/api/v1/${this.props.match.params.id}`, this.state.flightNumber)
             .then(res => {
                 this.setState({flightNumber: res.data, isEditFormDisplayed: false})
             })
@@ -107,8 +113,7 @@ class SingleFlightNumber extends Component {
                         </form>
                         : <div>
                             <div>
-                                Number: {this.state.FlightNumber.number}
-
+                                Number: {this.state.flightNumber.number}
                             </div>
                             <div>
                                 CrewMembers: {this.state.flightNumber.crewMembers}

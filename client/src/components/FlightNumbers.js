@@ -15,11 +15,19 @@ class FlightNumbers extends Component {
     }
 
 
-    componentDidMount = () => {
+  
+
+    getAllFlights = () => {
         axios.get('/api/v1').then(res => {
             this.setState({ flightNumbers: res.data })
         })
+
     }
+
+    componentDidMount () {
+        this.getAllFlights()
+       }
+   
 
     toggleFlightNumberForm = () => {
         this.setState((state, props) => {
@@ -66,8 +74,8 @@ class FlightNumbers extends Component {
                     this.state.flightNumbers.map(flightNumber => {
                         return (
                             <div key={flightNumber._id}>
-                                <Link>
-                                    to={`/$flightNumber._id}`}
+                                <Link  to={`/${flightNumber._id}`}>
+                                   
                                     {flightNumber.number}
                                 </Link>
                             </div>
@@ -82,37 +90,47 @@ class FlightNumbers extends Component {
                             <div>
                                 <label htmlFor="Number"></label>
                                 <input
-                                    id="number"
+                                    id="name"
                                     type="text"
+                                    name="number"
                                     onChange={this.handleChange}
                                     value={this.state.newFlightNumber.number}
-                                /> 
+                                    /> 
                             </div>
                             <div>
                                 <label htmlFor="crewMembers">Crew Members</label>
                                 <input
-                                    id="number"
+                                    id="name"
                                     type="text"
+                                   name="crewMembers"
+   
+ 
                                     onChange={this.handleChange}
-                                    value={this.state.newFlightNumber.crewMembers}
+                                    value={this.state.newFlightNumber.crewMember}
+
                                 />
                             </div>
                             <div>
                                 <label htmlFor="planeType">Plane Type</label>
                                 <input
-                                    id=""
+                                    id="name"
                                     type="text"
+                                    name="planeType"
+                                    
                                     onChange={this.handleChange}
                                     value={this.state.newFlightNumber.planeType}
+
                                 />
                             </div>
                             <div>
                                 <label htmlFor="recyclingProduced">Recycling Produced</label>
                                 <input
-                                    id=""
+                                    id="name"
                                     type="text"
+                                    name="recyclingProduced"
                                     onChange={this.handleChange}
                                     value={this.state.newFlightNumber.recyclingProduced}
+
                                 />
                             </div>
                             <button>Create</button>
