@@ -1,13 +1,17 @@
 const express = require('express')
 const logger = require('morgan')
 const app = express()
+const routes = require('./routes/index.js')
 
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static(`${_dirname}/client/build`))
 
-app.get('/', (req, res) => {
-    res.send("Hello World")
+// in noah's solution code, not sure of purpose app.use('/api/v1', routes)
+
+app.get('/*', (req, res) => {
+    res.sendFile(`${_dirname}/client/build/index.html`)
 })
 
 const PORT = process.env.PORT || 3001

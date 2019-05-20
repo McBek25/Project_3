@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "10.13.0"
+  },
   "scripts": {
+    "start": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "postinstall": "cd client && npm i && npm run build"
   },
   "keywords": [],
   "author": "",
