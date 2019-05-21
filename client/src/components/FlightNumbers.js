@@ -42,11 +42,13 @@ class FlightNumbers extends Component {
     }
 
     createFlightNumber = (e) => {
+        console.log(this.state.newFlightNumber)
+
         e.preventDefault()
         axios
             .post('/api/v1', {
                 number: this.state.newFlightNumber.number,
-                crewMembers: this.state.newFlightNumber.crewMembers,
+                crewMembers: this.state.newFlightNumber.crewMembers.split(', '),
                 planeType: this.state.newFlightNumber.planeType,
                 recyclingProduced: this.state.newFlightNumber.recyclingProduced
             })

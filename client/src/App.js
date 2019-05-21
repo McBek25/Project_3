@@ -11,7 +11,7 @@ class App extends Component {
         <div>
           <Switch>
             <Route exact path = "/" component = {FlightNumbers}/>
-            <Route exact path = "/plane/:id" component = {SingleFlightNumber}/>
+            <Route path = "/:id" component = {SingleFlightNumber}/>
           </Switch>
         </div>
       </Router>

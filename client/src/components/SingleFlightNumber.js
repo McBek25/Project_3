@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react';
+import { BrowserRouter as Redirect, Link } from 'react-router-dom'
+
 import axios from "axios";
 
 class SingleFlightNumber extends Component {
     state = {
         flightNumber: {
-            _id: `${this.props.match.params.id}`, //check the syntax, specifically backticks
+            _id: this.props.match.params.id, 
             number: '',
             crewMembers: '',
             recyclingProduced: '',
@@ -66,8 +67,8 @@ class SingleFlightNumber extends Component {
                 <Link to = "/">Flight Numbers Home</Link>
                 <h1>Single Flight Number</h1>
                 <button onClick = {this.toggleEditForm}>Edit</button>
-                {
-                    this.state.isEditFormDisplayed
+                
+                    {this.state.isEditFormDisplayed
                         ? <form onSubmit = {this.updateFlightNumber}>
                             <div>
                                 <label htmlFor="number">Number</label>
@@ -116,7 +117,7 @@ class SingleFlightNumber extends Component {
                                 Number: {this.state.flightNumber.number}
                             </div>
                             <div>
-                                CrewMembers: {this.state.flightNumber.crewMembers}
+                                CrewMembers: {JSON.stringify(this.state.flightNumber.crewMembers)}
                             </div>
                             <div>
                                 PlaneType: {this.state.flightNumber.planeType}
