@@ -7,8 +7,8 @@
     "node": "10.13.0"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
+    "start": "node server.js",
+    "dev": "concurrently \"node server.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd client && npm i && npm run build"
   },
