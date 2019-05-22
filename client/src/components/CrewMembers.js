@@ -26,6 +26,17 @@ const CrewMembersWrapper = styled.div`
         margin: 1em 0;
     }
 
+    label {
+        font-weight: 600;
+        margin-right: .75em;
+        font-size: 1.25em;
+        color: white;
+    }
+
+    a {
+        font-size: 1.25em;
+    }
+
 `
 
 class CrewMembers extends Component {
@@ -101,7 +112,7 @@ class CrewMembers extends Component {
                     this.state.crewMembers.map(crewMember => {
                         return (
                             <div key={crewMember._id}>
-                                <Link  to={`/crew/${crewMember._id}`}>
+                                <Link as="a" to={`/crew/${crewMember._id}`}>
                                    
                                     {crewMember.number}
                                 </Link>
