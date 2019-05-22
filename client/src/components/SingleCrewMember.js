@@ -1,7 +1,40 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-
+import styled from 'styled-components'
 import axios from "axios";
+
+const SingleCrewMemberWrapper = styled.div`
+    -webkit-stroke-color: white;
+    color: #292624;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:'Oswald', sans-serif;
+
+    .buttons {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    button {
+        background-color: #888582;
+        border: 1px solid white;
+        margin: 1em 0;
+    }
+
+    label {
+        color: white;
+        margin-right: .75em;
+        font-size: 1.25em;
+        font-weight: 600;
+    }
+
+    .member-info {
+        font-weight: 600;
+        font-size: 1.25em;
+    }
+`
 
 class SingleCrewMember extends Component {
     state = {
@@ -34,7 +67,7 @@ class SingleCrewMember extends Component {
     }
 
     handleChange = (e) => {
-        
+
         const cloneCrewMember = { ...this.state.crewMember }
         cloneCrewMember[e.target.name] = e.target.value
         this.setState({ crewMember: cloneCrewMember })
@@ -63,10 +96,10 @@ class SingleCrewMember extends Component {
 
 
             return (
-                <div>
-                
+                <SingleCrewMemberWrapper>
+
                     <h1>Single Crew Member</h1>
-                    
+
 
                     {this.state.isEditFormDisplayed
                         ? <form onSubmit={this.updateCrewMember}>
@@ -90,7 +123,7 @@ class SingleCrewMember extends Component {
                                     value={this.state.crewMember.name}
                                 />
                             </div>
-                            
+
                             <div>
                                 <label htmlFor="individualRecyclingProduced">Individual Recycling Produced</label>
                                 <input
@@ -101,26 +134,27 @@ class SingleCrewMember extends Component {
                                     value={this.state.crewMember.individualRecyclingProduced}
                                 />
                             </div>
-                            <button>Update</button>
+                            <button className="btn btn-primary">Update</button>
                         </form>
                         : <div>
-                            <div>
+                            <div className="member-info">
                                 Number: {this.state.crewMember.number}
                             </div>
-                            
-                            <div>
+
+                            <div className="member-info">
                                 Name: {JSON.stringify(this.state.crewMember.name)}
                             </div>
-                            
-                            <div>
+
+                            <div className="member-info">
                                 Individual Recycling Produced: {this.state.crewMember.individualRecyclingProduced}
                             </div>
-                        
-                            <button onClick={this.toggleEditForm}>Edit</button>
-                            <button onClick={this.deleteCrewMember}>Delete</button>
+                            <div className="buttons">
+                                <button className="btn btn-primary" onClick={this.toggleEditForm}>Edit</button>
+                                <button className="btn btn-primary" onClick={this.deleteCrewMember}>Delete</button>
+                            </div>
                         </div>
                     }
-                </div>
+                </SingleCrewMemberWrapper>
             );
 
         }
