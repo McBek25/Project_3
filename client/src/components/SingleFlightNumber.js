@@ -72,7 +72,7 @@ class SingleFlightNumber extends Component {
 
             return (
                 <div>
-                    <Link to="/">Flight Numbers Home</Link>
+                    
                     <h1>Single Flight Number</h1>
                     
 
