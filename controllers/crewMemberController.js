@@ -9,6 +9,16 @@ const crewMemberController = {
             console.log(err)
         }
     },
+    getByNumber: async (req, res) => {
+        try {
+            const crewMemberNumber = req.params.number
+            const crewMember = await CrewMember.findOne({number:crewMemberNumber})
+            res.json(crewMember)
+        } catch (err) {
+            console.log(err)
+            res.json(err)
+        }
+    },
     show: async (req, res) => {
         try {
             const crewMemberId = req.params.id

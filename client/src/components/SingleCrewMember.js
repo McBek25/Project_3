@@ -1,0 +1,131 @@
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom'
+
+import axios from "axios";
+
+class SingleCrewMember extends Component {
+    state = {
+        crewMember: {
+            _id: this.props.match.params.id,
+            number: '',
+            name: '',
+            individualRecyclingProduced: 0
+        },
+        redirectToHome: false,
+        isEditFormDisplayed: false
+    }
+
+    componentDidMount = () => {
+        axios.get(`/api/v1/member/${this.props.match.params.id}`).then(res => {
+            this.setState({ crewMember: res.data })
+        })
+    }
+
+    deleteCrewMember = () => {
+        axios.delete(`/api/v1/member/${this.props.match.params.id}`).then(res => {
+            this.setState({ redirectToHome: true })
+        })
+    }
+
+    toggleEditForm = () => {
+        this.setState((state, props) => {
+            return { isEditFormDisplayed: !state.isEditFormDisplayed }
+        })
+    }
+
+    handleChange = (e) => {
+        
+        const cloneCrewMember = { ...this.state.crewMember }
+        cloneCrewMember[e.target.name] = e.target.value
+        this.setState({ crewMember: cloneCrewMember })
+    }
+
+    handleCrewMemberChange = (e) => {
+        const cloneFlightNumber = { ...this.state.flightNumber }
+        cloneFlightNumber[e.target.name] = e.target.value.split(",")
+        this.setState({ flightNumber: cloneFlightNumber })
+    }
+
+    updateCrewMember = (e) => {
+        e.preventDefault()
+        console.log(this.state.crewMember)
+        axios
+            .put(`/api/v1/member/${this.props.match.params.id}`, this.state.crewMember)
+            .then(res => {
+                this.setState({ crewMember: res.data, isEditFormDisplayed: false })
+            })
+    }
+
+    render() {
+        if (this.state.redirectToHome) {
+            return (<Redirect to="/crew" />)
+        } else {
+
+
+            return (
+                <div>
+                
+                    <h1>Single Crew Member</h1>
+                    
+
+                    {this.state.isEditFormDisplayed
+                        ? <form onSubmit={this.updateCrewMember}>
+                            <div>
+                                <label htmlFor="number">Number</label>
+                                <input
+                                    id="number"
+                                    type="text"
+                                    name="number"
+                                    onChange={this.handleChange}
+                                    value={this.state.crewMember.number}
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="name">Crew Member's Name</label>
+                                <input
+                                    id="name"
+                                    type="text"
+                                    name="name"
+                                    onChange={this.handleChange}
+                                    value={this.state.crewMember.name}
+                                />
+                            </div>
+                            
+                            <div>
+                                <label htmlFor="individualRecyclingProduced">Individual Recycling Produced</label>
+                                <input
+                                    id="individualRecyclingProduced"
+                                    type="text"
+                                    name="individualRecyclingProduced"
+                                    onChange={this.handleChange}
+                                    value={this.state.crewMember.individualRecyclingProduced}
+                                />
+                            </div>
+                            <button>Update</button>
+                        </form>
+                        : <div>
+                            <div>
+                                Number: {this.state.crewMember.number}
+                            </div>
+                            
+                            <div>
+                                Name: {JSON.stringify(this.state.crewMember.name)}
+                            </div>
+                            
+                            <div>
+                                Individual Recycling Produced: {this.state.crewMember.individualRecyclingProduced}
+                            </div>
+                        
+                            <button onClick={this.toggleEditForm}>Edit</button>
+                            <button onClick={this.deleteCrewMember}>Delete</button>
+                        </div>
+                    }
+                </div>
+            );
+
+        }
+    }
+
+}
+
+export default SingleCrewMember
