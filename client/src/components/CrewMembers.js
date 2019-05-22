@@ -26,6 +26,12 @@ const CrewMembersWrapper = styled.div`
         margin: 1em 0;
     }
 
+    button:hover {
+        background-color: white;
+        color: #888582;
+
+    }
+
     label {
         font-weight: 600;
         margin-right: .75em;

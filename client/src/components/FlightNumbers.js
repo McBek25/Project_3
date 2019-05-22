@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-const flightNumbersWrapper = styled.div`
+const FlightNumbersWrapper = styled.div`
     -webkit-stroke-color: white;
     color: #292624;
     display: flex;
@@ -12,6 +12,36 @@ const flightNumbersWrapper = styled.div`
     justify-content: center;
     font-family:'Oswald', sans-serif;
 
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    button {
+        background-color: #888582;
+        border: 1px solid white;
+        margin: 1em 0;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #888582;
+
+    }
+
+    label {
+        font-weight: 600;
+        margin-right: .75em;
+        font-size: 1.25em;
+        color: white;
+    }
+
+    a {
+        font-size: 1.25em;
+    }
 
 `
 
@@ -56,11 +86,12 @@ class FlightNumbers extends Component {
 
     createFlightNumber = (e) => {
         
-        const recyclingProduced = this.state.newFlightNumber.recyclingProduced
+        const recyclingProduced = this.state.newFlightNumber.recyclingProduced === '' ? 0 : this.state.newFlightNumber.recyclingProduced
         e.preventDefault() 
         this.state.newFlightNumber.crewMembers.split(",").forEach(memberNumber => {
             axios.get(`/api/v1/member/number/${memberNumber}`)
             .then(res => {
+                console.log(res)
                 let member = res.data
                 member.individualRecyclingProduced += recyclingProduced
                 return member
@@ -91,13 +122,13 @@ class FlightNumbers extends Component {
 
     render() {
         return (
-            <flightNumbersWrapper>
+            <FlightNumbersWrapper>
                 <h1>Flight Numbers</h1>
                 {
                     this.state.flightNumbers.map(flightNumber => {
                         return (
                             <div key={flightNumber._id}>
-                                <Link  to={`/${flightNumber._id}`}>
+                                <Link as="a" to={`/${flightNumber._id}`}>
                                    
                                     {flightNumber.number}
                                 </Link>
@@ -106,12 +137,12 @@ class FlightNumbers extends Component {
                         )
                     })
                 }
-                <button onClick = {this.toggleFlightNumberForm}> + New Flight Number</button>
+                <button className="btn btn-primary" onClick = {this.toggleFlightNumberForm}> + New Flight Number</button>
                 {
                     this.state.isFlightNumberFormDisplayed
                         ? <form onSubmit = {this.createFlightNumber}> 
                             <div>
-                                <label htmlFor="Number"></label>
+                                <label htmlFor="Number">Number</label>
                                 <input
                                     id="name"
                                     type="text"
@@ -156,11 +187,11 @@ class FlightNumbers extends Component {
 
                                 />
                             </div>
-                            <button>Create</button>
+                            <button className="btn btn-primary">Create</button>
                         </form>
                         : null
             }  
-            </flightNumbersWrapper>  
+            </FlightNumbersWrapper>  
         )
     }        
 }

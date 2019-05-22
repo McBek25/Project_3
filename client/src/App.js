@@ -10,6 +10,7 @@ const AppWrapper = styled.div`
 a {
         color: #292624;
         font-weight: 700;
+        font-size: 1.25em;
     }
 a:hover {
   color: white;

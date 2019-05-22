@@ -23,6 +23,12 @@ const SingleCrewMemberWrapper = styled.div`
         margin: 1em 0;
     }
 
+    button:hover {
+        background-color: white;
+        color: #888582;
+
+    }
+
     label {
         color: white;
         margin-right: .75em;

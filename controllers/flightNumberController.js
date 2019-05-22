@@ -7,6 +7,7 @@ const flightNumberController = {
             res.json(flightNumbers)
         } catch (err) {
             console.log(err)
+            res.status(500).json(err)
         }
     },
     show: async (req, res) => {
@@ -16,7 +17,7 @@ const flightNumberController = {
             res.json(flightNumber)
         } catch (err) {
             console.log(err)
-            res.json(err)
+            res.status(500).json(err)
         }
     },
     create: async (req, res) => {

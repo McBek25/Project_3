@@ -7,16 +7,21 @@ const crewMemberController = {
             res.json(crewMembers)
         } catch (err) {
             console.log(err)
+            res.status(500).json(err)
         }
     },
     getByNumber: async (req, res) => {
         try {
             const crewMemberNumber = req.params.number
             const crewMember = await CrewMember.findOne({number:crewMemberNumber})
+            if(crewMember == null) {
+                res.status(500).send("Didnt find member")
+            } else {
             res.json(crewMember)
+            }
         } catch (err) {
             console.log(err)
-            res.json(err)
+            res.status(500).json(err)
         }
     },
     show: async (req, res) => {
@@ -26,7 +31,7 @@ const crewMemberController = {
             res.json(crewMember)
         } catch (err) {
             console.log(err)
-            res.json(err)
+            res.status(500).json(err)
         }
     },
     create: async (req, res) => {

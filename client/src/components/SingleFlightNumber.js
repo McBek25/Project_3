@@ -17,6 +17,7 @@ const SingleFlightNumberWrapper = styled.div`
         margin-bottom: 1em;
         font-size: 1.25em;
         font-weight: 600;
+        color: white;
     }
 
 
@@ -37,6 +38,12 @@ const SingleFlightNumberWrapper = styled.div`
     button {
         background-color: #888582;
         border: 1px solid white;
+    }
+
+    button:hover {
+        background-color: white;
+        color: #888582;
+
     }
 
     label {
