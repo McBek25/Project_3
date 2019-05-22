@@ -1,6 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const flightNumbersWrapper = styled.div`
+    -webkit-stroke-color: white;
+    color: #292624;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:'Oswald', sans-serif;
+
+
+`
 
 class FlightNumbers extends Component {
     state = {
@@ -78,7 +91,7 @@ class FlightNumbers extends Component {
 
     render() {
         return (
-            <div>
+            <flightNumbersWrapper>
                 <h1>Flight Numbers</h1>
                 {
                     this.state.flightNumbers.map(flightNumber => {
@@ -147,7 +160,7 @@ class FlightNumbers extends Component {
                         </form>
                         : null
             }  
-            </div>  
+            </flightNumbersWrapper>  
         )
     }        
 }
