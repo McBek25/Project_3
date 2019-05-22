@@ -9,4 +9,4 @@ const FlightNumber = new Schema({
     
 })
 
-module.exports = mongoose.model('FlightNumber', FlightNumber) //can space out either of those?
+module.exports = mongoose.model('FlightNumber', FlightNumber) 
