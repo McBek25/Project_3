@@ -4,22 +4,35 @@ import FlightNumbers from './components/FlightNumbers'
 import SingleFlightNumber from './components/SingleFlightNumber'
 import CrewMembers from './components/CrewMembers'
 import SingleCrewMember from './components/SingleCrewMember'
+import styled from 'styled-components'
+
+const AppWrapper = styled.div`
+a {
+        color: #292624;
+        font-weight: 700;
+    }
+
+`
 
 class App extends Component {
-  render () {
+  render() {
     return (
-      <Router>
-        <div>
-          <Link to="/">Flight Numbers</Link>
-          <Link to="/crew">Crew Members</Link>
-          <Switch>
-            <Route exact path = "/" component = {FlightNumbers}/>
-            <Route exact path = "/crew" component = {CrewMembers}/>
-            <Route path = "/crew/:id" component = {SingleCrewMember}/>
-            <Route path = "/:id" component = {SingleFlightNumber}/> 
-          </Switch>
-        </div>
-      </Router>
+      <AppWrapper>
+        <Router>
+          <div>
+          <ul className="nav justify-content-end">
+              <li className="nav-item"><Link className="nav-link active" as="a" to="/">Flight Numbers</Link></li>
+              <li className="nav-item"><Link className="nav-link active" as="a" to="/crew">Crew Members</Link></li>
+            </ul>
+            <Switch>
+              <Route exact path="/" component={FlightNumbers} />
+              <Route exact path="/crew" component={CrewMembers} />
+              <Route path="/crew/:id" component={SingleCrewMember} />
+              <Route path="/:id" component={SingleFlightNumber} />
+            </Switch>
+          </div>
+        </Router>
+      </AppWrapper>
     )
   }
 }

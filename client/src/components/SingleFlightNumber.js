@@ -1,7 +1,28 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'
+import styled from 'styled-components'
 
 import axios from "axios";
+
+const SingleFlightNumberWrapper = styled.div`
+    -webkit-stroke-color: white;
+    color: #292624;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:'Oswald', sans-serif;
+    
+    
+
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+`
 
 class SingleFlightNumber extends Component {
     state = {
@@ -12,13 +33,7 @@ class SingleFlightNumber extends Component {
             recyclingProduced: '',
             planeType: ''
         },
-        // updateflightNumberInfo: {
-        //     _id:'',
-        //     number: '',
-        //     crewMembers: '',
-        //     recyclingProduced: '',
-        //     planeType: ''
-        // },
+       
         redirectToHome: false,
         isEditFormDisplayed: false
     }
@@ -71,7 +86,7 @@ class SingleFlightNumber extends Component {
 
 
             return (
-                <div>
+                <SingleFlightNumberWrapper>
                     
                     <h1>Single Flight Number</h1>
                     
@@ -133,11 +148,11 @@ class SingleFlightNumber extends Component {
                             <div>
                                 RecyclingProduced: {this.state.flightNumber.recyclingProduced}
                             </div>
-                            <button onClick={this.toggleEditForm}>Edit</button>
-                            <button onClick={this.deleteFlightNumber}>Delete</button>
+                            <button className="btn btn-primary" onClick={this.toggleEditForm}>Edit</button>
+                            <button className="btn btn-primary" onClick={this.deleteFlightNumber}>Delete</button>
                         </div>
                     }
-                </div>
+                </SingleFlightNumberWrapper>
             );
 
         }
