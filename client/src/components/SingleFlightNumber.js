@@ -13,7 +13,9 @@ const SingleFlightNumberWrapper = styled.div`
     justify-content: center;
     font-family:'Oswald', sans-serif;
     
-    
+    .flight-info{
+        margin-bottom: 1em;
+    }
 
 
     form {
@@ -21,6 +23,17 @@ const SingleFlightNumberWrapper = styled.div`
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    button {
+        background-color: #888582;
+        border: 1px solid white;
     }
 `
 
@@ -33,7 +46,7 @@ class SingleFlightNumber extends Component {
             recyclingProduced: '',
             planeType: ''
         },
-       
+
         redirectToHome: false,
         isEditFormDisplayed: false
     }
@@ -57,7 +70,7 @@ class SingleFlightNumber extends Component {
     }
 
     handleChange = (e) => {
-        
+
         const cloneFlightNumber = { ...this.state.flightNumber }
         cloneFlightNumber[e.target.name] = e.target.value
         this.setState({ flightNumber: cloneFlightNumber })
@@ -87,9 +100,9 @@ class SingleFlightNumber extends Component {
 
             return (
                 <SingleFlightNumberWrapper>
-                    
+
                     <h1>Single Flight Number</h1>
-                    
+
 
                     {this.state.isEditFormDisplayed
                         ? <form onSubmit={this.updateFlightNumber}>
@@ -136,20 +149,24 @@ class SingleFlightNumber extends Component {
                             <button>Update</button>
                         </form>
                         : <div>
-                            <div>
-                                Number: {this.state.flightNumber.number}
+                            <div className="flight-info">
+                                <div>
+                                    Number: {this.state.flightNumber.number}
+                                </div>
+                                <div>
+                                    CrewMembers: {JSON.stringify(this.state.flightNumber.crewMembers)}
+                                </div>
+                                <div>
+                                    PlaneType: {this.state.flightNumber.planeType}
+                                </div>
+                                <div>
+                                    RecyclingProduced: {this.state.flightNumber.recyclingProduced}
+                                </div>
                             </div>
-                            <div>
-                                CrewMembers: {JSON.stringify(this.state.flightNumber.crewMembers)}
+                            <div className="buttons">
+                                <button className="btn btn-primary" onClick={this.toggleEditForm}>Edit</button>
+                                <button className="btn btn-primary" onClick={this.deleteFlightNumber}>Delete</button>
                             </div>
-                            <div>
-                                PlaneType: {this.state.flightNumber.planeType}
-                            </div>
-                            <div>
-                                RecyclingProduced: {this.state.flightNumber.recyclingProduced}
-                            </div>
-                            <button className="btn btn-primary" onClick={this.toggleEditForm}>Edit</button>
-                            <button className="btn btn-primary" onClick={this.deleteFlightNumber}>Delete</button>
                         </div>
                     }
                 </SingleFlightNumberWrapper>

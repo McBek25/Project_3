@@ -8,7 +8,8 @@ body {
   background-image: url('/images/leaves.jpg');
   background-position: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed
+  background-attachment: fixed;
+  color: #888582;
 }
 
 code {
