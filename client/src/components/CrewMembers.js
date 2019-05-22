@@ -1,6 +1,32 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+
+const CrewMembersWrapper = styled.div`
+    -webkit-stroke-color: white;
+    color: #292624;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:'Oswald', sans-serif;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    button {
+        background-color: #888582;
+        border: 1px solid white;
+        margin: 1em 0;
+    }
+
+`
 
 class CrewMembers extends Component {
     state = {
@@ -69,7 +95,7 @@ class CrewMembers extends Component {
 
     render() {
         return (
-            <div>
+            <CrewMembersWrapper>
                 <h1>Crew Members</h1>
                 {
                     this.state.crewMembers.map(crewMember => {
@@ -84,12 +110,12 @@ class CrewMembers extends Component {
                         )
                     })
                 }
-                <button onClick = {this.toggleCrewMemberForm}> + New Crew Member</button>
+                <button className="btn btn-primary" onClick = {this.toggleCrewMemberForm}> + New Crew Member</button>
                 {
                     this.state.isCrewMemberFormDisplayed
                         ? <form onSubmit = {this.createCrewMember}> 
                             <div>
-                                <label htmlFor="Number"></label>
+                                <label htmlFor="Number">Number</label>
                                 <input
                                     id="number"
                                     type="text"
@@ -121,11 +147,11 @@ class CrewMembers extends Component {
 
                                 />
                             </div> */}
-                            <button>Create</button>
+                            <button className="btn btn-primary">Create</button>
                         </form>
                         : null
             }  
-            </div>  
+            </CrewMembersWrapper>  
         )
     }        
 }
