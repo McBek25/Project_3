@@ -44,7 +44,7 @@ const flightNumberController = {
         console.log('DELETE')
         try {
             const flightNumberId = req.params.id
-            const deletedFlightNumber = await FlightNumber.findByIdAndRemove(fightNumberId)
+            const deletedFlightNumber = await FlightNumber.findByIdAndRemove(flightNumberId)
             res.json(deletedFlightNumber)
         } catch (err) {
             console.log(err)

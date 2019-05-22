@@ -7,7 +7,7 @@ class FlightNumbers extends Component {
         flightNumbers: [],
         newFlightNumber: {
             number: '',
-            crewMembers: [],
+            crewMembers: '',
             planeType: '',
             recyclingProduced: ''
         },
@@ -48,7 +48,7 @@ class FlightNumbers extends Component {
         axios
             .post('/api/v1', {
                 number: this.state.newFlightNumber.number,
-                crewMembers: this.state.newFlightNumber.crewMembers.split(', '),
+                crewMembers: this.state.newFlightNumber.crewMembers.split(','),
                 planeType: this.state.newFlightNumber.planeType,
                 recyclingProduced: this.state.newFlightNumber.recyclingProduced
             })
@@ -58,7 +58,7 @@ class FlightNumbers extends Component {
             this.setState({
                 newFlightNumber: {
                     number: '',
-                    crewMembers: [],
+                    crewMembers: '',
                     planeType: '',
                     recyclingProduced: ''
                 },
