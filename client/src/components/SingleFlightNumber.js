@@ -15,6 +15,8 @@ const SingleFlightNumberWrapper = styled.div`
     
     .flight-info{
         margin-bottom: 1em;
+        font-size: 1.25em;
+        font-weight: 600;
     }
 
 
@@ -29,11 +31,19 @@ const SingleFlightNumberWrapper = styled.div`
     .buttons {
         display: flex;
         justify-content: space-evenly;
+        margin-top: 1em;
     }
 
     button {
         background-color: #888582;
         border: 1px solid white;
+    }
+
+    label {
+        color: white;
+        margin-right: .75em;
+        font-size: 1.25em;
+        font-weight:600;
     }
 `
 
@@ -146,7 +156,7 @@ class SingleFlightNumber extends Component {
                                     value={this.state.flightNumber.recyclingProduced}
                                 />
                             </div>
-                            <button>Update</button>
+                            <button className="btn btn-primary">Update</button>
                         </form>
                         : <div>
                             <div className="flight-info">
